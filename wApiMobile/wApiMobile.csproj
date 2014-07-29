@@ -126,7 +126,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Servicio.cs" />
+    <Compile Include="Models\ServicioDetalle.cs" />
+    <Compile Include="Models\ShamanContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using wApiMobile.Models;
 
 namespace wApiMobile
 {
@@ -17,7 +18,7 @@ namespace wApiMobile
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
+            System.Data.Entity.Database.SetInitializer<ShamanContext>(null);
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
