@@ -27,36 +27,38 @@ namespace wApiMobile.Controllers
         public bool Post([FromBody]string nroMovil, [FromBody]string mensaje)
         {
 
-            string channel = "m" + nroMovil;
+            //string channel = "m" + nroMovil;
 
-            bool isPushMessageSend = false;
+            //bool isPushMessageSend = false;
 
-            string postString = "";
-            string urlpath = "https://api.parse.com/1/push";
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create(urlpath);
-            postString = "{ \"channels\": [ \"" + nroMovil + "\"  ], " +
-                             "\"data\" : {\"alert\":\"" + mensaje + "\"}" +
-                             "}";
-            httpWebRequest.ContentType = "application/json";
-            httpWebRequest.ContentLength = postString.Length;
-            httpWebRequest.Headers.Add("X-Parse-Application-Id", "Yu5MsVhQi7ih2ltKlNrQcrpFfvRlexZnGiecJZHd");
-            httpWebRequest.Headers.Add("X-Parse-REST-API-KEY", "oNEoeZZYe5JcfNwnSSBWGNc93uGxIkd5Kcl5gts4");
-            httpWebRequest.Method = "POST";
-            StreamWriter requestWriter = new StreamWriter(httpWebRequest.GetRequestStream());
-            requestWriter.Write(postString);
-            requestWriter.Close();
-            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-            {
-                var responseText = streamReader.ReadToEnd();
-                JObject jObjRes = JObject.Parse(responseText);
-                if (Convert.ToString(jObjRes).IndexOf("true") != -1)
-                {
-                    isPushMessageSend = true;
-                }
-            }
+            //string postString = "";
+            //string urlpath = "https://api.parse.com/1/push";
+            //var httpWebRequest = (HttpWebRequest)WebRequest.Create(urlpath);
+            //postString = "{ \"channels\": [ \"" + nroMovil + "\"  ], " +
+            //                 "\"data\" : {\"alert\":\"" + mensaje + "\"}" +
+            //                 "}";
+            //httpWebRequest.ContentType = "application/json";
+            //httpWebRequest.ContentLength = postString.Length;
+            //httpWebRequest.Headers.Add("X-Parse-Application-Id", "Yu5MsVhQi7ih2ltKlNrQcrpFfvRlexZnGiecJZHd");
+            //httpWebRequest.Headers.Add("X-Parse-REST-API-KEY", "oNEoeZZYe5JcfNwnSSBWGNc93uGxIkd5Kcl5gts4");
+            //httpWebRequest.Method = "POST";
+            //StreamWriter requestWriter = new StreamWriter(httpWebRequest.GetRequestStream());
+            //requestWriter.Write(postString);
+            //requestWriter.Close();
+            //var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            //using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            //{
+            //    var responseText = streamReader.ReadToEnd();
+            //    JObject jObjRes = JObject.Parse(responseText);
+            //    if (Convert.ToString(jObjRes).IndexOf("true") != -1)
+            //    {
+            //        isPushMessageSend = true;
+            //    }
+            //}
 
-            return isPushMessageSend;
+            //return isPushMessageSend;
+
+            return false;
         }
 
 
