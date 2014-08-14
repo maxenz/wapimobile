@@ -8,59 +8,35 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using wApiMobile.Classes;
 using wApiMobile.Models;
 
 namespace wApiMobile.Controllers
 {
     public class AccionesController : Controller
     {
+
+        private StoreProcedureManager spManager = new StoreProcedureManager("cnnShaman", "@execRdo", "@execMsg");
+
         private string cnnApp = ConfigurationManager.ConnectionStrings["cnnShaman"].ConnectionString;
 
         [HttpPost]
-        public string setLlegadaMovil(string movil, string viajeID)
+        public string setLlegadaMovil(string movil, int viajeID)
         {
 
-            string resultado = "";
-            SqlConnection sqlConn = new SqlConnection(cnnApp);
-            try
-            {
-
-                sqlConn.Open();
-                SqlCommand cmd = new SqlCommand("sp_SetLlegada", sqlConn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.Add("@viajeId", SqlDbType.BigInt, 8).Value = viajeID;
-                cmd.Parameters.Add("@movil", SqlDbType.VarChar, 10).Value = movil;
-                cmd.Parameters.Add("@latitud", SqlDbType.Decimal).Value = 0;
-                cmd.Parameters.Add("@longitud", SqlDbType.Decimal).Value = 0;
-                cmd.Parameters.Add("@usuarioId", SqlDbType.BigInt, 8).Value = 0;
-                cmd.Parameters.Add("@terminalId", SqlDbType.BigInt, 8).Value = 0;
-
-                cmd.Parameters.Add("@execRdo", SqlDbType.TinyInt).Value = 0;
-                cmd.Parameters["@execRdo"].Direction = ParameterDirection.InputOutput;
-                cmd.Parameters.Add("@execMsg", SqlDbType.VarChar, 100).Value = "";
-                cmd.Parameters["@execMsg"].Direction = ParameterDirection.InputOutput;
-
-                cmd.ExecuteNonQuery();
-
-                int codStore = Convert.ToInt32(cmd.Parameters[6].Value);
-                string msgStore = cmd.Parameters[7].Value.ToString();
-
-                if (msgStore == "") msgStore = "La llegada se dio correctamente.";
-
-                resultado = JsonConvert.SerializeObject(new Resultado(codStore, msgStore));
-
-            }
-            catch (Exception ex)
-            {
-                resultado = JsonConvert.SerializeObject(new Resultado(1, ex.Message));
-            }
-            finally
-            {
-                sqlConn.Close();
-            }
-
-            return resultado;
+            spManager.configure("sp_SetLlegada");
+            spManager.SqlCommand.Parameters.Add("@viajeId", SqlDbType.BigInt, 8).Value = viajeID;
+            spManager.SqlCommand.Parameters.Add("@movil", SqlDbType.VarChar, 10).Value = movil;
+            spManager.SqlCommand.Parameters.Add("@latitud", SqlDbType.Decimal).Value = 0;
+            spManager.SqlCommand.Parameters.Add("@longitud", SqlDbType.Decimal).Value = 0;
+            spManager.SqlCommand.Parameters.Add("@usuarioId", SqlDbType.BigInt, 8).Value = 0;
+            spManager.SqlCommand.Parameters.Add("@terminalId", SqlDbType.BigInt, 8).Value = 0;
+            spManager.SqlCommand.Parameters.Add(spManager.ResultCodeParameter, SqlDbType.TinyInt).Value = 0;
+            spManager.SqlCommand.Parameters.Add(spManager.ResultMessageParameter, SqlDbType.VarChar, 100).Value = "";
+            spManager.SqlCommand.ExecuteNonQuery();
+            spManager.setResultado("La llegada se dio correctamente");
+            spManager.cerrarConexion();
+            return JsonConvert.SerializeObject(spManager.Resultado);
 
         }
 
