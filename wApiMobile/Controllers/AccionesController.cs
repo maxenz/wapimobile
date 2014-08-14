@@ -44,153 +44,64 @@ namespace wApiMobile.Controllers
         public string setSalidaMovil(string movil, string viajeID)
         {
 
-            string resultado = "";
-            SqlConnection sqlConn = new SqlConnection(cnnApp);
-            try
-            {
-
-                sqlConn.Open();
-                SqlCommand cmd = new SqlCommand("sp_SetSalida", sqlConn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.Add("@viajeId", SqlDbType.BigInt, 8).Value = viajeID;
-                cmd.Parameters.Add("@movil", SqlDbType.VarChar, 10).Value = movil;
-                cmd.Parameters.Add("@latitud", SqlDbType.Decimal).Value = 0;
-                cmd.Parameters.Add("@longitud", SqlDbType.Decimal).Value = 0;
-                cmd.Parameters.Add("@usuarioId", SqlDbType.BigInt, 8).Value = 0;
-                cmd.Parameters.Add("@terminalId", SqlDbType.BigInt, 8).Value = 0;
-
-                cmd.Parameters.Add("@execRdo", SqlDbType.TinyInt).Value = 0;
-                cmd.Parameters["@execRdo"].Direction = ParameterDirection.InputOutput;
-                cmd.Parameters.Add("@execMsg", SqlDbType.VarChar, 100).Value = "";
-                cmd.Parameters["@execMsg"].Direction = ParameterDirection.InputOutput;
-
-                cmd.ExecuteNonQuery();
-
-                int codStore = Convert.ToInt32(cmd.Parameters[6].Value.ToString());
-                string msgStore = cmd.Parameters[7].Value.ToString();
-
-                if (msgStore == "") msgStore = "La salida se dio correctamente";
-
-                resultado = JsonConvert.SerializeObject(new Resultado(codStore, msgStore));
-
-            }
-            catch (Exception ex)
-            {
-                resultado = JsonConvert.SerializeObject(new Resultado(1, ex.Message));
-            }
-            finally
-            {
-                sqlConn.Close();
-
-            }
-
-            return resultado;
+            spManager.configure("sp_SetSalida");
+            spManager.SqlCommand.Parameters.Add("@viajeId", SqlDbType.BigInt, 8).Value = viajeID;
+            spManager.SqlCommand.Parameters.Add("@movil", SqlDbType.VarChar, 10).Value = movil;
+            spManager.SqlCommand.Parameters.Add("@latitud", SqlDbType.Decimal).Value = 0;
+            spManager.SqlCommand.Parameters.Add("@longitud", SqlDbType.Decimal).Value = 0;
+            spManager.SqlCommand.Parameters.Add("@usuarioId", SqlDbType.BigInt, 8).Value = 0;
+            spManager.SqlCommand.Parameters.Add("@terminalId", SqlDbType.BigInt, 8).Value = 0;
+            spManager.SqlCommand.Parameters.Add(spManager.ResultCodeParameter, SqlDbType.TinyInt).Value = 0;
+            spManager.SqlCommand.Parameters.Add(spManager.ResultMessageParameter, SqlDbType.VarChar, 100).Value = "";
+            spManager.SqlCommand.ExecuteNonQuery();
+            spManager.setResultado("La salida se dio correctamente");
+            spManager.cerrarConexion();
+            return JsonConvert.SerializeObject(spManager.Resultado);
         }
 
         [HttpPost]
         public string setFinalServicio(string movil, string viajeID, int motivoID, int diagnosticoID, string observaciones)
         {
 
-            string resultado = "";
-            SqlConnection sqlConn = new SqlConnection(cnnApp);
-            try
-            {
+            spManager.configure("sp_SetFinal");
+            spManager.SqlCommand.Parameters.Add("@viajeId", SqlDbType.BigInt, 8).Value = viajeID;
+            spManager.SqlCommand.Parameters.Add("@movil", SqlDbType.VarChar, 10).Value = movil;
+            spManager.SqlCommand.Parameters.Add("@diagnosticoId", SqlDbType.BigInt, 8).Value = diagnosticoID;
+            spManager.SqlCommand.Parameters.Add("@motivoNoRealizacionId", SqlDbType.BigInt, 8).Value = motivoID;
+            spManager.SqlCommand.Parameters.Add("@observaciones", SqlDbType.VarChar, 260).Value = observaciones;
+            spManager.SqlCommand.Parameters.Add("@latitud", SqlDbType.Decimal).Value = 0;
+            spManager.SqlCommand.Parameters.Add("@longitud", SqlDbType.Decimal).Value = 0;
+            spManager.SqlCommand.Parameters.Add("@usuarioId", SqlDbType.BigInt, 8).Value = 0;
+            spManager.SqlCommand.Parameters.Add("@terminalId", SqlDbType.BigInt, 8).Value = 0;
+            spManager.SqlCommand.Parameters.Add(spManager.ResultCodeParameter, SqlDbType.TinyInt).Value = 0;
+            spManager.SqlCommand.Parameters.Add(spManager.ResultMessageParameter, SqlDbType.VarChar, 100).Value = "";
+            spManager.SqlCommand.ExecuteNonQuery();
+            spManager.setResultado("El servicio se ha finalizado correctamente.");
+            spManager.cerrarConexion();
+            return JsonConvert.SerializeObject(spManager.Resultado);
 
-                sqlConn.Open();
-                SqlCommand cmd = new SqlCommand("sp_SetFinal", sqlConn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.Add("@viajeId", SqlDbType.BigInt, 8).Value = viajeID;
-                cmd.Parameters.Add("@movil", SqlDbType.VarChar, 10).Value = movil;
-                cmd.Parameters.Add("@diagnosticoId", SqlDbType.BigInt, 8).Value = diagnosticoID;
-                cmd.Parameters.Add("@motivoNoRealizacionId", SqlDbType.BigInt, 8).Value = motivoID;
-                cmd.Parameters.Add("@observaciones", SqlDbType.VarChar, 260).Value = observaciones;
-                cmd.Parameters.Add("@latitud", SqlDbType.Decimal).Value = 0;
-                cmd.Parameters.Add("@longitud", SqlDbType.Decimal).Value = 0;
-                cmd.Parameters.Add("@usuarioId", SqlDbType.BigInt, 8).Value = 0;
-                cmd.Parameters.Add("@terminalId", SqlDbType.BigInt, 8).Value = 0;
-
-                cmd.Parameters.Add("@execRdo", SqlDbType.TinyInt).Value = 0;
-                cmd.Parameters["@execRdo"].Direction = ParameterDirection.InputOutput;
-                cmd.Parameters.Add("@execMsg", SqlDbType.VarChar, 100).Value = "";
-                cmd.Parameters["@execMsg"].Direction = ParameterDirection.InputOutput;
-
-                cmd.ExecuteNonQuery();
-
-                int codStore = Convert.ToInt32(cmd.Parameters[9].Value.ToString());
-                string msgStore = cmd.Parameters[10].Value.ToString();
-
-                if (msgStore == "") msgStore = "El servicio se finalizó correctamente";
-
-                resultado = JsonConvert.SerializeObject(new Resultado(codStore, msgStore));
-
-            }
-            catch (Exception ex)
-            {
-                resultado = JsonConvert.SerializeObject(new Resultado(1, ex.Message));
-            }
-            finally
-            {
-                sqlConn.Close();
-            }            
-
-            return resultado;
         }
 
         [HttpPost]
         public string setCancelacionServicio(string movil, string viajeID, string observaciones)
         {
 
-            string resultado = "";
-            SqlConnection sqlConn = new SqlConnection(cnnApp);
-            try
-            {
-
-                sqlConn.Open();
-                SqlCommand cmd = new SqlCommand("sp_SetCancelacion", sqlConn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.Add("@viajeId", SqlDbType.BigInt, 8).Value = viajeID;
-                cmd.Parameters.Add("@movil", SqlDbType.VarChar, 10).Value = movil;
-                cmd.Parameters.Add("@observaciones", SqlDbType.VarChar).Value = observaciones;
-                cmd.Parameters.Add("@latitud", SqlDbType.Decimal).Value = 0;
-                cmd.Parameters.Add("@longitud", SqlDbType.Decimal).Value = 0;
-                cmd.Parameters.Add("@usuarioId", SqlDbType.BigInt, 8).Value = 0;
-                cmd.Parameters.Add("@terminalId", SqlDbType.BigInt, 8).Value = 0;
-
-                cmd.Parameters.Add("@execRdo", SqlDbType.TinyInt).Value = 0;
-                cmd.Parameters["@execRdo"].Direction = ParameterDirection.InputOutput;
-                cmd.Parameters.Add("@execMsg", SqlDbType.VarChar, 100).Value = "";
-                cmd.Parameters["@execMsg"].Direction = ParameterDirection.InputOutput;
-
-                cmd.ExecuteNonQuery();
-
-                int codStore = Convert.ToInt32(cmd.Parameters[7].Value.ToString());
-                string msgStore = cmd.Parameters[8].Value.ToString();
-
-                if (msgStore == "") msgStore = "El servicio se canceló correctamente";
-
-                resultado = JsonConvert.SerializeObject(new Resultado(codStore, msgStore));
-
-            }
-            catch (Exception ex)
-            {
-                resultado = JsonConvert.SerializeObject(new Resultado(1, ex.Message));
-            }
-            finally
-            {
-                sqlConn.Close();
-
-            }
-
-            return resultado;
-
+            spManager.configure("sp_SetCancelacion");
+            spManager.SqlCommand.Parameters.Add("@viajeId", SqlDbType.BigInt, 8).Value = viajeID;
+            spManager.SqlCommand.Parameters.Add("@movil", SqlDbType.VarChar, 10).Value = movil;
+            spManager.SqlCommand.Parameters.Add("@observaciones", SqlDbType.VarChar, 260).Value = observaciones;
+            spManager.SqlCommand.Parameters.Add("@latitud", SqlDbType.Decimal).Value = 0;
+            spManager.SqlCommand.Parameters.Add("@longitud", SqlDbType.Decimal).Value = 0;
+            spManager.SqlCommand.Parameters.Add("@usuarioId", SqlDbType.BigInt, 8).Value = 0;
+            spManager.SqlCommand.Parameters.Add("@terminalId", SqlDbType.BigInt, 8).Value = 0;
+            spManager.SqlCommand.Parameters.Add(spManager.ResultCodeParameter, SqlDbType.TinyInt).Value = 0;
+            spManager.SqlCommand.Parameters.Add(spManager.ResultMessageParameter, SqlDbType.VarChar, 100).Value = "";
+            spManager.SqlCommand.ExecuteNonQuery();
+            spManager.setResultado("El servicio se ha cancelado correctamente.");
+            spManager.cerrarConexion();
+            return JsonConvert.SerializeObject(spManager.Resultado);
 
         }
-
-
-
 
     }
 }
