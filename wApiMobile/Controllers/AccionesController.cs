@@ -18,8 +18,6 @@ namespace wApiMobile.Controllers
 
         private StoreProcedureManager spManager = new StoreProcedureManager("cnnShaman", "@execRdo", "@execMsg");
 
-        private string cnnApp = ConfigurationManager.ConnectionStrings["cnnShaman"].ConnectionString;
-
         [HttpPost]
         public string setLlegadaMovil(string movil, int viajeID)
         {
