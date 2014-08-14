@@ -7,7 +7,7 @@ using System.Web;
 
 namespace wApiMobile.Models
 {
-[Table("IncidentesViajes")]
+
     public class Servicio
     {
         [Key]
@@ -22,20 +22,8 @@ namespace wApiMobile.Models
         public String Localidad { get; set; }
         public String Latitud { get; set; }
         public String Longitud { get; set; }
+        public String ColorHexa { get; set; }
+        public Int32 CurrentViaje { get; set; }
 
-
-
-
-        //public Servicio(string id, string nro, int gdo, string sexo, int edad, string dom, string cli, string hor)
-        //{
-        //    IdServicio = id;
-        //    NroServicio = nro;
-        //    Grado = gdo;
-        //    Sexo = sexo;
-        //    Edad = edad;
-        //    Domicilio = dom;
-        //    Cliente = cli;
-        //    Horario = hor;
-        //}
     }
 }

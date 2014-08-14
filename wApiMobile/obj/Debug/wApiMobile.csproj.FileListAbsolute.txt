@@ -27,7 +27,6 @@ C:\Users\soporte\Desktop\Proyectos .NET\wApiMobile\wApiMobile\bin\System.Web.Raz
 C:\Users\soporte\Desktop\Proyectos .NET\wApiMobile\wApiMobile\bin\System.Web.WebPages.xml
 C:\Users\soporte\Desktop\Proyectos .NET\wApiMobile\wApiMobile\bin\System.Web.WebPages.Deployment.xml
 C:\Users\soporte\Desktop\Proyectos .NET\wApiMobile\wApiMobile\bin\System.Web.WebPages.Razor.xml
-C:\Users\soporte\Desktop\Proyectos .NET\wApiMobile\wApiMobile\obj\Debug\wApiMobile.csprojResolveAssemblyReference.cache
 C:\Users\soporte\Desktop\Proyectos .NET\wApiMobile\wApiMobile\obj\Debug\wApiMobile.dll
 C:\Users\soporte\Desktop\Proyectos .NET\wApiMobile\wApiMobile\obj\Debug\wApiMobile.pdb
 C:\Users\Maxo\Desktop\Proyectos\wapimobile\wApiMobile\bin\wApiMobile.dll.config
@@ -63,3 +62,4 @@ C:\Users\Maxo\Desktop\Proyectos\wapimobile\wApiMobile\bin\System.Web.WebPages.Ra
 C:\Users\Maxo\Desktop\Proyectos\wapimobile\wApiMobile\obj\Debug\wApiMobile.csprojResolveAssemblyReference.cache
 C:\Users\Maxo\Desktop\Proyectos\wapimobile\wApiMobile\obj\Debug\wApiMobile.dll
 C:\Users\Maxo\Desktop\Proyectos\wapimobile\wApiMobile\obj\Debug\wApiMobile.pdb
+C:\Users\soporte\Desktop\Proyectos .NET\wApiMobile\wApiMobile\obj\Debug\wApiMobile.csprojResolveAssemblyReference.cache
