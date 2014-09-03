@@ -24,7 +24,6 @@ namespace wApiMobile.Controllers
         // GET api/<controller>
         public List<Servicio> Get()
         {
-
             string idMovil = Helper.getValueFromQueryString("idMovil");
             List<Servicio> servicios = db.Database.SqlQuery<Servicio>("sp_GetViajesMovil @movil = {0}", idMovil).ToList<Servicio>();
             return servicios;
