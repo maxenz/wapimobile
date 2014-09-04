@@ -12,8 +12,10 @@ namespace wApiMobile.Controllers
     public class PushNotificationController : ApiController
     {
 
-        public bool Get(string nroMovil, string mensaje)
+        public bool Get(string nroMovil, string mensaje, string appID, string apiKey)
         {
+            //app id Yu5MsVhQi7ih2ltKlNrQcrpFfvRlexZnGiecJZHd
+            //api key KRAjomjaryxsslXvwnuwHkZk7CRJpSwpGFkfY0aP
             string channel = "m" + nroMovil;
 
             bool isPushMessageSend = false;
@@ -26,8 +28,8 @@ namespace wApiMobile.Controllers
                              "}";
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.ContentLength = postString.Length;
-            httpWebRequest.Headers.Add("X-Parse-Application-Id", "Yu5MsVhQi7ih2ltKlNrQcrpFfvRlexZnGiecJZHd");
-            httpWebRequest.Headers.Add("X-Parse-REST-API-KEY", "KRAjomjaryxsslXvwnuwHkZk7CRJpSwpGFkfY0aP");
+            httpWebRequest.Headers.Add("X-Parse-Application-Id", appID);
+            httpWebRequest.Headers.Add("X-Parse-REST-API-KEY", apiKey);
             httpWebRequest.Method = "POST";
             StreamWriter requestWriter = new StreamWriter(httpWebRequest.GetRequestStream());
             requestWriter.Write(postString);
