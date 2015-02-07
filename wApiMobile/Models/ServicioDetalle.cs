@@ -40,5 +40,6 @@ namespace wApiMobile.Models
         public String PlanId { get; set; }
         public int CoPago { get; set; }
         public String Observaciones { get; set; }
+        public String Telefono { get; set; }
     }
 }
