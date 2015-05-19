@@ -34,7 +34,7 @@ namespace wApiMobile.Controllers
         // GET api/<controller>/5
         public ServicioDetalle Get(int id)
         {
-            string license = Helper.getValueFromQueryString("license");
+            string license = Helper.getValueFromQueryString("licencia");
             string idMovil = Helper.getValueFromQueryString("idMovil");
             ServicioDetalle svDetalle = db.Database.SqlQuery<ServicioDetalle>("sp_GetViaje @viajeId = {0},@movil = {1}", id,idMovil)
                                         .FirstOrDefault();
