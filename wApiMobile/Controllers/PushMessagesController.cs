@@ -16,7 +16,7 @@ namespace wApiMobile.Controllers
         {
             try
             {
-                string channel = "m" + mobileNumber;
+                string channel = "m" + mobileNumber + "_" + license;
 
                 bool isPushMessageSend = false;
                 string postString = "";
