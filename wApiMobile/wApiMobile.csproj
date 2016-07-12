@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -124,17 +125,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Classes\StoreProcedureManager.cs" />
     <Compile Include="Controllers\ActionsController.cs" />
-    <Compile Include="Controllers\AccionesController.cs" />
     <Compile Include="Controllers\DiagnosisController.cs" />
-    <Compile Include="Controllers\DiagnosticosController.cs" />
     <Compile Include="Controllers\ClinicalHistoryController.cs" />
-    <Compile Include="Controllers\HistoriaClinicaController.cs" />
     <Compile Include="Controllers\PushMessagesController.cs" />
     <Compile Include="Controllers\ReasonsController.cs" />
-    <Compile Include="Controllers\MotivosController.cs" />
     <Compile Include="Controllers\PushNotificationController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
-    <Compile Include="Controllers\ServiciosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

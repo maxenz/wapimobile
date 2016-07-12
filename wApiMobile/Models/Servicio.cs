@@ -11,19 +11,20 @@ namespace wApiMobile.Models
     public class Servicio
     {
         [Key]
-        public Int64 IdServicio { get; set; }
-        public String NroServicio { get; set; }
-        public String Grado { get; set; }
-        public String Sexo { get; set; }
-        public Int32 Edad { get; set; }
-        public String Domicilio { get; set; }
-        public String Cliente { get; set; }
-        public String Horario { get; set; }
-        public String Localidad { get; set; }
-        public String Latitud { get; set; }
-        public String Longitud { get; set; }
-        public String ColorHexa { get; set; }
-        public Int32 CurrentViaje { get; set; }
+        public long IdServicio { get; set; }
+        public string NroServicio { get; set; }
+        public string Grado { get; set; }
+        public string Sexo { get; set; }
+        public int Edad { get; set; }
+        public string Domicilio { get; set; }
+        public string Cliente { get; set; }
+        public string Horario { get; set; }
+        public string Localidad { get; set; }
+        public string Latitud { get; set; }
+        public string Longitud { get; set; }
+        public string ColorHexa { get; set; }
+        public int CurrentViaje { get; set; }
+
 
     }
 }

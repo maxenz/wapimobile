@@ -13,7 +13,5 @@ namespace wApiMobile.Models
         {
         }
 
-        public DbSet<Servicio> IncidentesViajes { get; set; }
-
     }
 }

@@ -26,7 +26,7 @@ namespace wApiMobile.Controllers
         {
             string license = Helper.getValueFromQueryString("licencia");
             string idMovil = Helper.getValueFromQueryString("idMovil");
-            List<Servicio> servicios = db.Database.SqlQuery<Servicio>("sp_GetViajesMovil @movil = {0}", idMovil).ToList<Servicio>();
+            List<Servicio> servicios = db.Database.SqlQuery<Servicio>("sp_GetViajesMovil @movil = {0}", idMovil).ToList();
             return servicios;
            
         }
