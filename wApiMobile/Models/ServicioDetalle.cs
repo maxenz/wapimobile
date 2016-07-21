@@ -54,5 +54,6 @@ namespace wApiMobile.Models
         public string DerLongitud { get; set; }
         public string Diagnostico { get; set; }
         public string SintomasItems { get; set; }
+
     }
 }

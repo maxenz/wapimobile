@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 
 namespace wApiMobile.Utils
@@ -11,6 +9,16 @@ namespace wApiMobile.Utils
         {
             var query = HttpContext.Current.Request.QueryString;
             return query.GetValues(key)[0];
+        }
+
+        public static int getHoursFromTime(string time)
+        {
+            return Convert.ToInt32(time.Split(':')[0]);
+        }
+
+        public static int getMinutesFromTime(string time)
+        {
+            return Convert.ToInt32(time.Split(':')[1]);
         }
     }
 }

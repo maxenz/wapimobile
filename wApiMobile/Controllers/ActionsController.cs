@@ -58,9 +58,8 @@ namespace wApiMobile.Controllers
         }
 
         [HttpPost]
-        public string setFinalServicio(long reportNumber, string licencia, string movil, string viajeID, int motivoID, int diagnosticoID, string observaciones, string copago)
+        public string setFinalServicio(long reportNumber, string licencia, string movil, string viajeID, int motivoID, int diagnosticoID, string observaciones, string copago, string derivationTime)
         {
-
             spManager.configure("sp_SetFinal");
             spManager.SqlCommand.Parameters.Add("@viajeId", SqlDbType.BigInt, 8).Value = viajeID;
             spManager.SqlCommand.Parameters.Add("@movil", SqlDbType.VarChar, 10).Value = movil;
@@ -72,6 +71,12 @@ namespace wApiMobile.Controllers
             spManager.SqlCommand.Parameters.Add("@longitud", SqlDbType.Decimal).Value = 0;
             spManager.SqlCommand.Parameters.Add("@usuarioId", SqlDbType.BigInt, 8).Value = 0;
             spManager.SqlCommand.Parameters.Add("@terminalId", SqlDbType.BigInt, 8).Value = 0;
+            if (!string.IsNullOrEmpty(derivationTime))
+            {
+                spManager.SqlCommand.Parameters.Add("@derivationHour", SqlDbType.TinyInt).Value = Utils.Helper.getHoursFromTime(derivationTime);
+                spManager.SqlCommand.Parameters.Add("@derivationMinutes", SqlDbType.TinyInt).Value = Utils.Helper.getMinutesFromTime(derivationTime);
+            }
+
             spManager.SqlCommand.Parameters.Add(spManager.ResultCodeParameter, SqlDbType.TinyInt).Value = 0;
             spManager.SqlCommand.Parameters.Add(spManager.ResultMessageParameter, SqlDbType.VarChar, 100).Value = "";
             spManager.SqlCommand.ExecuteNonQuery();

@@ -15,10 +15,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/09/2016 19:41:03</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>06/21/2016 01:27:23</publishTime>
+      <publishTime>07/12/2016 12:54:39</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>06/21/2016 01:27:23</publishTime>
+      <publishTime>07/12/2016 12:54:39</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>06/09/2016 19:41:03</publishTime>
@@ -63,7 +63,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/09/2016 19:41:03</publishTime>
     </File>
     <File Include="bin/wApiMobile.dll">
-      <publishTime>06/16/2016 17:30:14</publishTime>
+      <publishTime>07/12/2016 12:54:02</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>06/09/2016 19:41:03</publishTime>
@@ -282,7 +282,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/09/2016 19:41:04</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>06/21/2016 01:27:17</publishTime>
+      <publishTime>07/12/2016 12:54:35</publishTime>
     </File>
     <File Include="Scripts/jquery-1.7.1.js">
       <publishTime>06/09/2016 19:41:04</publishTime>
@@ -342,7 +342,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/09/2016 19:41:04</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/21/2016 01:27:15</publishTime>
+      <publishTime>07/12/2016 12:54:33</publishTime>
     </File>
   </ItemGroup>
 </Project>
