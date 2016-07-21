@@ -66,17 +66,16 @@ namespace wApiMobile.Controllers
             spManager.SqlCommand.Parameters.Add("@diagnosticoId", SqlDbType.BigInt, 8).Value = diagnosticoID;
             spManager.SqlCommand.Parameters.Add("@motivoNoRealizacionId", SqlDbType.BigInt, 8).Value = motivoID;
             spManager.SqlCommand.Parameters.Add("@cosNoCobrado", SqlDbType.TinyInt).Value = copago;
+            if (!string.IsNullOrEmpty(derivationTime))
+            {
+                spManager.SqlCommand.Parameters.Add("@horEspera", SqlDbType.Int).Value = Utils.Helper.getHoursFromTime(derivationTime);
+                spManager.SqlCommand.Parameters.Add("@minEspera", SqlDbType.Int).Value = Utils.Helper.getMinutesFromTime(derivationTime);
+            }
             spManager.SqlCommand.Parameters.Add("@observaciones", SqlDbType.VarChar, 260).Value = observaciones;
             spManager.SqlCommand.Parameters.Add("@latitud", SqlDbType.Decimal).Value = 0;
             spManager.SqlCommand.Parameters.Add("@longitud", SqlDbType.Decimal).Value = 0;
             spManager.SqlCommand.Parameters.Add("@usuarioId", SqlDbType.BigInt, 8).Value = 0;
             spManager.SqlCommand.Parameters.Add("@terminalId", SqlDbType.BigInt, 8).Value = 0;
-            if (!string.IsNullOrEmpty(derivationTime))
-            {
-                spManager.SqlCommand.Parameters.Add("@derivationHour", SqlDbType.TinyInt).Value = Utils.Helper.getHoursFromTime(derivationTime);
-                spManager.SqlCommand.Parameters.Add("@derivationMinutes", SqlDbType.TinyInt).Value = Utils.Helper.getMinutesFromTime(derivationTime);
-            }
-
             spManager.SqlCommand.Parameters.Add(spManager.ResultCodeParameter, SqlDbType.TinyInt).Value = 0;
             spManager.SqlCommand.Parameters.Add(spManager.ResultMessageParameter, SqlDbType.VarChar, 100).Value = "";
             spManager.SqlCommand.ExecuteNonQuery();
