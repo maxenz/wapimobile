@@ -13,11 +13,13 @@ namespace wApiMobile.Utils
 
         public static int getHoursFromTime(string time)
         {
+            if (string.IsNullOrEmpty(time)) return 0;
             return Convert.ToInt32(time.Split(':')[0]);
         }
 
         public static int getMinutesFromTime(string time)
         {
+            if (string.IsNullOrEmpty(time)) return 0;
             return Convert.ToInt32(time.Split(':')[1]);
         }
     }
