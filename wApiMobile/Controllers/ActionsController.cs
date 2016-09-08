@@ -60,7 +60,7 @@ namespace wApiMobile.Controllers
         [HttpPost]
         public string setFinalServicio(long reportNumber, string licencia, string movil, string viajeID, int motivoID, int diagnosticoID, string observaciones, string copago, string derivationTime)
         {
-            spManager.configure("sp_SetFinal");
+            spManager.configure("sp_SetFinalV2");
             spManager.SqlCommand.Parameters.Add("@viajeId", SqlDbType.BigInt, 8).Value = viajeID;
             spManager.SqlCommand.Parameters.Add("@movil", SqlDbType.VarChar, 10).Value = movil;
             spManager.SqlCommand.Parameters.Add("@diagnosticoId", SqlDbType.BigInt, 8).Value = diagnosticoID;

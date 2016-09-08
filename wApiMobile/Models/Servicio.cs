@@ -24,6 +24,7 @@ namespace wApiMobile.Models
         public string Longitud { get; set; }
         public string ColorHexa { get; set; }
         public int CurrentViaje { get; set; }
+        public DateTime HorLlamada { get; set; }
 
 
     }
