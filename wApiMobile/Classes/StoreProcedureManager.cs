@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using wApiMobile.Models;
 
 namespace wApiMobile.Classes
@@ -18,9 +14,9 @@ namespace wApiMobile.Classes
         public string ResultMessageParameter;
         public Resultado Resultado;
 
-        public StoreProcedureManager(string connName, string resultCodeParameter, string resultMessageParameter)
+        public StoreProcedureManager(string cnnString, string resultCodeParameter, string resultMessageParameter)
         {
-            ConnString = ConfigurationManager.ConnectionStrings[connName].ConnectionString;
+            ConnString = cnnString;
             SqlConn = new SqlConnection(ConnString);
             ResultCodeParameter = resultCodeParameter;
             ResultMessageParameter = resultMessageParameter;

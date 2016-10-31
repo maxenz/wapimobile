@@ -1,15 +1,6 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web;
-using System.Web.Helpers;
 using System.Web.Http;
-using System.Web.Mvc;
 using wApiMobile.Models;
 using wApiMobile.Utils;
 
@@ -17,15 +8,13 @@ namespace wApiMobile.Controllers
 {
     public class ServicesController : ApiController
     {
-        private ShamanContext db = new ShamanContext();
-
-        private string cnnApp = ConfigurationManager.ConnectionStrings["cnnShaman"].ConnectionString;
 
         // GET api/<controller>
         public List<Servicio> Get()
         {
             string license = Helper.getValueFromQueryString("licencia");
             string idMovil = Helper.getValueFromQueryString("idMovil");
+            ShamanContext db = new ShamanContext(Helper.getConnectionStringBySerial(license));
             List<Servicio> servicios = db.Database.SqlQuery<Servicio>("sp_GetViajesMovil @movil = {0}", idMovil).ToList();
             return servicios;
            
@@ -36,6 +25,7 @@ namespace wApiMobile.Controllers
         {
             string license = Helper.getValueFromQueryString("licencia");
             string idMovil = Helper.getValueFromQueryString("idMovil");
+            ShamanContext db = new ShamanContext(Helper.getConnectionStringBySerial(license));
             ServicioDetalle svDetalle = db.Database.SqlQuery<ServicioDetalle>("sp_GetViaje @viajeId = {0},@movil = {1}", id,idMovil)
                                         .FirstOrDefault();
 

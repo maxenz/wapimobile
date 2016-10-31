@@ -11,11 +11,11 @@ namespace wApiMobile.Controllers
 {
     public class ReasonsController : ApiController
     {
-        private ShamanContext db = new ShamanContext();
         // GET api/diagnosticos
         public List<Motivo> Get()
         {
             string license = Helper.getValueFromQueryString("licencia");
+            ShamanContext db = new ShamanContext(Helper.getConnectionStringBySerial(license));
             List<Motivo> motivos = db.Database.SqlQuery<Motivo>("sp_GetFullList @tabla = {0}", "MotivosNoRealizacion")
                 .ToList<Motivo>();
 

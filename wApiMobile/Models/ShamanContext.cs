@@ -8,8 +8,8 @@ namespace wApiMobile.Models
 {
     public class ShamanContext : DbContext
     {
-        public ShamanContext()
-            : base("name = cnnShaman")
+        public ShamanContext(string cnnString)
+            : base(cnnString)
         {
         }
 

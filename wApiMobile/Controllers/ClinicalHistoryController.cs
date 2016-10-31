@@ -11,11 +11,11 @@ namespace wApiMobile.Controllers
 {
     public class ClinicalHistoryController : ApiController
     {
-        private ShamanContext db = new ShamanContext();
         public List<HistoriaClinica> Get(int id)
         {
             string license = Helper.getValueFromQueryString("licencia");
-            List<HistoriaClinica> hc = db.Database.SqlQuery<HistoriaClinica>("sp_GetHC @viajeId = {0}", id).ToList<HistoriaClinica>();
+            ShamanContext db = new ShamanContext(Helper.getConnectionStringBySerial(license));
+            List<HistoriaClinica> hc = db.Database.SqlQuery<HistoriaClinica>("sp_GetHC @viajeId = {0}", id).ToList();
             return hc;
         }
      

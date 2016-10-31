@@ -251,3 +251,11 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+# Custom Maxo
+*.suo
+*.user
+_ReSharper.*
+bin
+obj
+packages

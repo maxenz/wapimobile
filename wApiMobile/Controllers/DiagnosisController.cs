@@ -8,13 +8,13 @@ namespace wApiMobile.Controllers
 {
     public class DiagnosisController : ApiController
     {
-        private ShamanContext db = new ShamanContext();
         // GET api/diagnosticos
         public List<Diagnostico> Get()
         {
             string license = Helper.getValueFromQueryString("licencia");
+            ShamanContext db = new ShamanContext(Helper.getConnectionStringBySerial(license));
             List<Diagnostico> diagnosticos = db.Database.SqlQuery<Diagnostico>("sp_GetFullList @tabla = {0}", "Diagnosticos")
-                .ToList<Diagnostico>();
+                .ToList();
 
             return diagnosticos;
         }
