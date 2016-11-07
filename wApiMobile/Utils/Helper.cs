@@ -65,6 +65,31 @@ namespace wApiMobile.Utils
 
         }
 
+        public static string getServerConnectiongBySerial(string serial)
+        {
+            var url = string.Format("{0}{1}", ConfigurationManager.AppSettings["GestionUrlServerConnection"], serial);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = WebRequestMethods.Http.Get;
+            request.Accept = "application/json";
+            request.ContentType = "application/json; charset=utf-8";
+
+            var httpResponse = (HttpWebResponse)request.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                var responseText = streamReader.ReadToEnd();
+                JObject cnnString = JObject.Parse(responseText);
+                if (cnnString.Property("ConexionServidor") != null)
+                {
+                    string cnn = cnnString.Property("ConexionServidor").Value.ToString();
+                    cnn += ";MultipleActiveResultSets = True";
+                    return cnn;
+                }
+            }
+
+            return null;
+
+        }
+
         public static AndroidFtpDto getAndroidFtpData(string serial)
         {
             var url = string.Format("{0}{1}", ConfigurationManager.AppSettings["GestionUrlAndroidFtp"], serial);

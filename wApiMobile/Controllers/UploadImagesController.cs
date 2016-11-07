@@ -34,7 +34,8 @@ namespace wApiMobile.Controllers
 
                     string mobileNumber = form["mobileNumber"];
                     string license = form["license"];
-                    var fileName = String.Format("{0}_{1}.jpg", mobileNumber, DateTime.Now.ToFileTimeUtc().ToString());
+                    string incidentId = form["incidentId"];
+                    var fileName = String.Format("{0}_{1}.jpg", incidentId, DateTime.Now.ToFileTimeUtc().ToString());
 
                     var path = Path.Combine(
                         uploadPath,

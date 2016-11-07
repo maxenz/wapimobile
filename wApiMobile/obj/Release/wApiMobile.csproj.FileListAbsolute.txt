@@ -95,3 +95,4 @@ C:\Users\Maxo\Desktop\Paramedic\wapimobile\wApiMobile\bin\System.Web.WebPages.De
 C:\Users\Maxo\Desktop\Paramedic\wapimobile\wApiMobile\bin\System.Web.WebPages.Razor.xml
 C:\Users\Maxo\Desktop\Paramedic\wapimobile\wApiMobile\obj\Release\wApiMobile.dll
 C:\Users\Maxo\Desktop\Paramedic\wapimobile\wApiMobile\obj\Release\wApiMobile.pdb
+C:\Users\Maxo\Desktop\Paramedic\wapimobile\wApiMobile\obj\Release\wApiMobile.csprojResolveAssemblyReference.cache
