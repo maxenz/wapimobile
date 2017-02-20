@@ -26,7 +26,7 @@ namespace wApiMobile.Controllers
                 var uploadPath = HttpContext.Current.Server.MapPath("~/Uploads");
                 Directory.CreateDirectory(uploadPath);
 
-                var file = HttpContext.Current.Request.Files[0];
+                var file = System.Web.HttpContext.Current.Request.Files.Count > 0 ? System.Web.HttpContext.Current.Request.Files[0] : null;
 
                 if (file != null && file.ContentLength > 0)
                 {
