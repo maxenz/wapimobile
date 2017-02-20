@@ -122,6 +122,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Classes\FtpManager.cs" />
     <Compile Include="Classes\StoreProcedureManager.cs" />
     <Compile Include="Controllers\ActionsController.cs" />
     <Compile Include="Controllers\DiagnosisController.cs" />

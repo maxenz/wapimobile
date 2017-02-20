@@ -1,7 +1,15 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using System.Net;
+using System.Net.Http;
+using System.Web;
+using System.Threading.Tasks;
+using wApiMobile.Utils;
+using System.IO;
+using wApiMobile.Models;
+using wApiMobile.Classes;
 using System.Data;
 using System.Web.Mvc;
-using wApiMobile.Classes;
+using Newtonsoft.Json;
 
 namespace wApiMobile.Controllers
 {
@@ -66,6 +74,18 @@ namespace wApiMobile.Controllers
         {
             try
             {
+
+                // --> Envio de Audio 
+                var uploadPath = System.Web.HttpContext.Current.Server.MapPath("~/Uploads");
+                Directory.CreateDirectory(uploadPath);
+
+                var file = System.Web.HttpContext.Current.Request.Files[0];
+
+                if (file != null && file.ContentLength > 0)
+                {
+                    FtpManager.Upload(file, uploadPath, licencia, movil, viajeID, "Audios");
+                }
+
                 StoreProcedureManager spManager = new StoreProcedureManager(Utils.Helper.getConnectionStringBySerial(licencia), "@execRdo", "@execMsg");
                 spManager.configure("sp_SetFinalV2");
                 spManager.SqlCommand.Parameters.Add("@viajeId", SqlDbType.BigInt, 8).Value = viajeID;
@@ -85,11 +105,13 @@ namespace wApiMobile.Controllers
                 spManager.SqlCommand.ExecuteNonQuery();
                 spManager.setResultado("El servicio se ha finalizado correctamente.");
                 spManager.cerrarConexion();
+
                 return JsonConvert.SerializeObject(spManager.Resultado);
+
             }
-            catch
+            catch (Exception ex)
             {
-                return null;
+                return JsonConvert.SerializeObject(new Resultado(500, string.Format("No se pudo finalizar el servicio. Error: {0}", ex.Message)));
             }
 
         }

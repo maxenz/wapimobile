@@ -19,11 +19,13 @@ namespace wApiMobile.Models
 
         public string Mobile { get; set; }
 
+        public string SpecificFolderName { get; set; }
+
         public string RemoteFileDir
         {
             get
             {
-                return String.Format(@"{0}/AndroidUploads/{1}/{2}/", this.Dir, this.License, this.Mobile);
+                return String.Format(@"{0}/AndroidUploads/{1}/{2}/{3}/", this.Dir, this.License, this.Mobile, this.SpecificFolderName);
 
             }
         }

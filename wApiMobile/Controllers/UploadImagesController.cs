@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using wApiMobile.Utils;
 using System.IO;
 using wApiMobile.Models;
+using wApiMobile.Classes;
 
 namespace wApiMobile.Controllers
 {
@@ -25,8 +26,7 @@ namespace wApiMobile.Controllers
                 var uploadPath = HttpContext.Current.Server.MapPath("~/Uploads");
                 Directory.CreateDirectory(uploadPath);
 
-                var file = HttpContext.Current.Request.Files.Count > 0 ?
-                HttpContext.Current.Request.Files[0] : null;
+                var file = HttpContext.Current.Request.Files[0];
 
                 if (file != null && file.ContentLength > 0)
                 {
@@ -35,24 +35,8 @@ namespace wApiMobile.Controllers
                     string mobileNumber = form["mobileNumber"];
                     string license = form["license"];
                     string incidentId = form["incidentId"];
-                    var fileName = String.Format("{0}_{1}.jpg", incidentId, DateTime.Now.ToFileTimeUtc().ToString());
 
-                    var path = Path.Combine(
-                        uploadPath,
-                        fileName
-                    );
-
-                    file.SaveAs(path);
-           
-                    AndroidFtpDto ftpData = Helper.getAndroidFtpData(license);
-                    ftpData.LocalFileDir = @path;
-                    ftpData.License = license;
-                    ftpData.Mobile = mobileNumber;
-                    Helper.UploadToFtp(ftpData);
-                    if (File.Exists(@path))
-                    {
-                        File.Delete(@path);
-                    }
+                    FtpManager.Upload(file, uploadPath, license, mobileNumber, incidentId, "Images");
                 }
 
                 return new HttpResponseMessage(HttpStatusCode.OK);
