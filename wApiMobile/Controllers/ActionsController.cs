@@ -21,7 +21,7 @@ namespace wApiMobile.Controllers
         {
             try
             {
-                StoreProcedureManager spManager = new StoreProcedureManager(Utils.Helper.getConnectionStringBySerial(licencia), "@execRdo", "@execMsg");
+                StoreProcedureManager spManager = new StoreProcedureManager(Helper.getConnectionStringBySerial(licencia), "@execRdo", "@execMsg");
                 spManager.configure("sp_SetLlegada");
                 spManager.SqlCommand.Parameters.Add("@viajeId", SqlDbType.BigInt, 8).Value = viajeID;
                 spManager.SqlCommand.Parameters.Add("@movil", SqlDbType.VarChar, 10).Value = movil;

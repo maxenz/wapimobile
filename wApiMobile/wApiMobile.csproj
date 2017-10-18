@@ -128,6 +128,7 @@
     <Compile Include="Controllers\DiagnosisController.cs" />
     <Compile Include="Controllers\ClinicalHistoryController.cs" />
     <Compile Include="Controllers\PushMessagesController.cs" />
+    <Compile Include="Controllers\MobileAccessTimeController.cs" />
     <Compile Include="Controllers\ReasonsController.cs" />
     <Compile Include="Controllers\PushNotificationController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
@@ -139,6 +140,7 @@
     <Compile Include="Models\AndroidFtpDto.cs" />
     <Compile Include="Models\Diagnostico.cs" />
     <Compile Include="Models\HistoriaClinica.cs" />
+    <Compile Include="Models\MobileAccessTime.cs" />
     <Compile Include="Models\Motivo.cs" />
     <Compile Include="Models\Resultado.cs" />
     <Compile Include="Models\Servicio.cs" />

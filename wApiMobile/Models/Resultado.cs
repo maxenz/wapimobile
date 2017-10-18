@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace wApiMobile.Models
+﻿namespace wApiMobile.Models
 {
     public class Resultado
     {
